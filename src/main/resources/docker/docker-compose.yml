@@ -1,0 +1,13 @@
+version: '2'
+services:
+  dev-postgres:
+    image: postgres:11.8
+    container_name: dev-postgres
+    command:
+       postgres -c shared_preload_libraries='pg_stat_statements'
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: dev
+      POSTGRES_USER: dev
+      POSTGRES_DB: dev_db

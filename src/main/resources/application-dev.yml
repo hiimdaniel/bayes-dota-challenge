@@ -1,0 +1,5 @@
+spring:
+  datasource:
+    username: dev
+    password: dev
+    url: jdbc:postgresql://localhost:5432/dev_db?useUnicode=true&characterEncoding=utf8&stringtype=unspecified
