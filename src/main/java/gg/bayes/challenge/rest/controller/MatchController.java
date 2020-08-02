@@ -1,5 +1,6 @@
 package gg.bayes.challenge.rest.controller;
 
+import gg.bayes.challenge.exception.FileProcessingException;
 import gg.bayes.challenge.rest.model.HeroDamage;
 import gg.bayes.challenge.rest.model.HeroItems;
 import gg.bayes.challenge.rest.model.HeroKills;
@@ -28,8 +29,11 @@ public class MatchController {
     }
 
     @PostMapping(consumes = "text/plain")
-    public ResponseEntity<Long> ingestMatch(@RequestBody @NotNull @NotBlank String payload) {
+    public ResponseEntity<Long> ingestMatch(@RequestBody @NotNull @NotBlank String payload) throws FileProcessingException {
+        log.info("Incoming file processing request");
         final Long matchId = matchService.ingestMatch(payload);
+        log.info("New match has been created with ID: {}", matchId);
+        matchService.processFile(payload, matchId);
         return ResponseEntity.ok(matchId);
     }
 
