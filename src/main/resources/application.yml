@@ -4,12 +4,12 @@ server:
 
 spring:
   jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
     open-in-view: false
     hibernate:
       ddl-auto: create
     properties:
       hibernate:
+        dialect: org.hibernate.dialect.PostgreSQL95Dialect
         enable_lazy_load_no_trans: true
         temp:
           use_jdbc_metadata_defaults: false
@@ -18,18 +18,13 @@ spring:
         persistence:
           query.timeout: 10000
   datasource:
-    driverClassName: org.h2.Driver
-    url: jdbc:h2:mem:dota
-    username: sa
-    password: password
+    username: ${DB_USERNME}
+    password: ${DB_PASSWORD}
+    url: jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_NAME}?useUnicode=true&characterEncoding=utf8&stringtype=unspecified
   banner:
     image:
       location: classpath:banner.png
       width: 100
       height: 15
       margin: 1
-  h2:
-    console:
-      enabled: true
-
 logging.config: classpath:logback-${ENV:development}.xml

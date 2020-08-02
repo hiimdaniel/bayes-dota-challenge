@@ -1,0 +1,13 @@
+version: '2'
+services:
+  test-postgres:
+    image: postgres:11.8
+    container_name: test-postgres
+    command:
+       postgres -c shared_preload_libraries='pg_stat_statements'
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: test
+      POSTGRES_USER: test
+      POSTGRES_DB: test_db

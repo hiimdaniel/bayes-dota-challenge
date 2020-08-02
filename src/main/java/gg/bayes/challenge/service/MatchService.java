@@ -1,7 +1,9 @@
 package gg.bayes.challenge.service;
 
-public interface MatchService {
-    Long ingestMatch(String payload);
+import gg.bayes.challenge.exception.FileProcessingException;
 
-    // TODO add more methods as needed
+public interface MatchService {
+    Long ingestMatch(String payload) throws FileProcessingException;
+
+    void processFile(String payload, Long matchId) throws FileProcessingException;
 }
