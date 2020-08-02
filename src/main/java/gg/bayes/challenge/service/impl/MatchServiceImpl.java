@@ -51,6 +51,7 @@ public class MatchServiceImpl implements MatchService {
     }
 
     @Override
+    @Async
     public void processFile(String payload, Long matchId) throws FileProcessingException {
         try (BufferedReader reader = new BufferedReader(new StringReader(payload))) {
             String line = reader.readLine();
