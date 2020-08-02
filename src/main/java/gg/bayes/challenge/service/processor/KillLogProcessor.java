@@ -4,7 +4,6 @@ import gg.bayes.challenge.repository.entity.KillLogEntry;
 import gg.bayes.challenge.repository.entity.LogType;
 import org.springframework.stereotype.Service;
 
-import java.text.ParseException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 

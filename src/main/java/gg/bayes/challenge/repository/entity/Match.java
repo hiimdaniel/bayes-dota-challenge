@@ -6,7 +6,6 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.time.Instant;
@@ -19,7 +18,7 @@ public class Match {
     @Id
     @GeneratedValue(generator = "match-id-generator")
     @GenericGenerator(name = "match-id-generator",
-    strategy = "gg.bayes.challenge.repository.MatchIdGenerator")
+        strategy = "gg.bayes.challenge.repository.MatchIdGenerator")
     @Column(name = "id", updatable = false, nullable = false)
     private Long id;
 

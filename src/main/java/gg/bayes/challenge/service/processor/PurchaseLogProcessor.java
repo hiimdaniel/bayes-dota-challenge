@@ -4,7 +4,6 @@ import gg.bayes.challenge.repository.entity.LogType;
 import gg.bayes.challenge.repository.entity.PurchaseLogEntry;
 import org.springframework.stereotype.Service;
 
-import java.text.ParseException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -19,7 +18,7 @@ public class PurchaseLogProcessor extends BaseLogProcessor<PurchaseLogEntry> {
     }
 
     @Override
-    protected PurchaseLogEntry mapEntity(Matcher matcher, Long matchId){
+    protected PurchaseLogEntry mapEntity(Matcher matcher, Long matchId) {
         PurchaseLogEntry logEntry = new PurchaseLogEntry();
         logEntry.setTimestamp(mapRelativeTimestamp(matcher.group(1)));
         logEntry.setHeroName(matcher.group(2));

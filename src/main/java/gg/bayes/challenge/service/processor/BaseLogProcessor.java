@@ -4,10 +4,8 @@ import gg.bayes.challenge.repository.entity.Log;
 import lombok.extern.slf4j.Slf4j;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -37,8 +35,8 @@ public abstract class BaseLogProcessor<T extends Log> implements LogProcessor<T>
         return Optional.empty();
     }
 
-    protected Long mapRelativeTimestamp(String rawTimestamp){
-        rawTimestamp= rawTimestamp.replace("[","").replace("]","");
+    protected Long mapRelativeTimestamp(String rawTimestamp) {
+        rawTimestamp = rawTimestamp.replace("[", "").replace("]", "");
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(TIMESTAMP_FORMAT);
         LocalTime localTime = LocalTime.parse(rawTimestamp, formatter);
         return localTime.toNanoOfDay();
