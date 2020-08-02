@@ -14,7 +14,7 @@ public class KillLogProcessor extends BaseLogProcessor<KillLogEntry> {
     private final static String REGEX_PATTERN = "([0-9\\.\\:\\[\\]]{14}) ([A-Za-z0-9_]{1,255}) (is killed by) ([A-Za-z0-9_]{1,255})";
 
     @Override
-    protected KillLogEntry mapEntity(Matcher matcher, Long matchId) throws ParseException {
+    protected KillLogEntry mapEntity(Matcher matcher, Long matchId) {
         KillLogEntry logEntry = new KillLogEntry();
         logEntry.setTimestamp(mapRelativeTimestamp(matcher.group(1)));
         logEntry.setHeroName(matcher.group(2));

@@ -19,7 +19,7 @@ public class PurchaseLogProcessor extends BaseLogProcessor<PurchaseLogEntry> {
     }
 
     @Override
-    protected PurchaseLogEntry mapEntity(Matcher matcher, Long matchId) throws ParseException {
+    protected PurchaseLogEntry mapEntity(Matcher matcher, Long matchId){
         PurchaseLogEntry logEntry = new PurchaseLogEntry();
         logEntry.setTimestamp(mapRelativeTimestamp(matcher.group(1)));
         logEntry.setHeroName(matcher.group(2));

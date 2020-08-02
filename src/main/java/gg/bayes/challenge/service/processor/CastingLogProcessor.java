@@ -19,7 +19,7 @@ public class CastingLogProcessor extends BaseLogProcessor<CastAbilityLogEntry> {
     }
 
     @Override
-    protected CastAbilityLogEntry mapEntity(Matcher matcher, Long matchId) throws ParseException {
+    protected CastAbilityLogEntry mapEntity(Matcher matcher, Long matchId) {
         CastAbilityLogEntry logEntry = new CastAbilityLogEntry();
         logEntry.setTimestamp(mapRelativeTimestamp(matcher.group(1)));
         logEntry.setHeroName(matcher.group(2));

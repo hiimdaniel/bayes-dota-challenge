@@ -23,7 +23,6 @@ import java.util.Optional;
 @Service
 public class MatchServiceImpl implements MatchService {
 
-
     private final MatchRepository matchRepository;
 
     private final List<LogProcessor> logProcessors;
@@ -75,4 +74,5 @@ public class MatchServiceImpl implements MatchService {
         }
         return Optional.empty();
     }
+
 }
