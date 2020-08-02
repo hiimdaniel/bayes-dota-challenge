@@ -32,11 +32,11 @@ I know this is just a coding challenge, please handle the following notes on iss
 
 Known issues & limitations
 ----
-###Hibernate auto DDL generation
+### Hibernate auto DDL generation
 In production environment auto schema generation should not be used as it may have unforeseen side effects. In a production ready code 
 a migration tool like Flyway would be useful. A simple Flyway configuration doesn't involve too much overhaed and makes the deployment process less stressful.
 
-###ID generation
+### ID generation
  As different auto ID generation strategies could cause issues (like incremental sequences in Postgres, DB locks, etc) I preferred to use custom 
  ID generations. For the log entities I used a Hibernate built-in feature to generate a UUID, but this was not an option for the Match entity as 
  it's value is predefined (Long). For the match entity I created a custom  [ID generator](src/main/java/gg/bayes/challenge/repository/MatchIdGenerator.java) 
@@ -46,17 +46,17 @@ a migration tool like Flyway would be useful. A simple Flyway configuration does
  - My custom generator is based on a random UUID and a timestamp. Theoritically, 2 different service instances could generate the same UUID (if they are running on different JVMs)
  at the exact same time. This could also cause constraint violation.
  
-###Idempotency
+### Idempotency
 As the processed logfile does not have any unique ID we can't decide if it has been already processed before or not. 
 It means that we can process and save the same match data under different ID over and over and over again. In a nutshell,
 the service is not idempotent.
 
-###File size
+### File size
 As we are processing a whole text file as a String it could cause some issues if the text is too long.
 We need to take care of the limitations of the String class, the character quantity could not be more than the max int value,
 and the String could not be bigger than half of the heap size.
 
-###Unprotected endpoints
+### Unprotected endpoints
 The endpoints do not have any sort of authorization/authentication mechanism.
 
 ###Indices
@@ -65,24 +65,24 @@ now, but just because we are working on a mini dataset.
 
 Further improvements
 ----
-###Usage of Kafka
+### Usage of Kafka
 As I see most of the problems are caused because of the way how we consume the log entries. It affects the ID generation, harms idempotency
 and involves filesize limitations. On the long term I would implement a functionality on the sender side to preprocess 
 the log file, map it to a model object (possible use of a model contract library), enrich them with unique IDs and send them 
 one by one on a Kafka topic. This service would only be responsible for consuming the messages from Kafka and persist them.
 
-###API service separation
+### API service separation
 This service is responsible for processing, persisting and serving the log entries on Rest endpoints. Basically a bottleneck
 and could cause problems if we want to scale it up.
 Maybe it would be better to separate the API capabilities to a different service.
 
-###DB migration tool
+### DB migration tool
 As I mentioned earlier it would be better to use some sort of DB migration tool, like Flyway. This way it would be much easier to prevent deployment issues
 and implement DB changes and improvements.
 
-###Swagger enrichment
+### Swagger enrichment
 I didn't have time for it, but a more detailed explanation on the endpoints would be nice and useful for the calling clients.
 
-###Containerization
+### Containerization
 Would be nice to add a dockerfile, use a maven docker plugin or include a CI containerization possibility.
 
